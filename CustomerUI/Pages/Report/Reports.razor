@@ -1,0 +1,62 @@
+﻿@page "/reportviewer"
+@using CustomerUI.Pages.Brand
+@using CustomerUI.Pages.Category
+@using CustomerUI.Pages.Product
+@using CustomerUI.Pages.SubCategory
+@using CustomerUI.Pages.Supplier
+@using CustomerUI.Pages.PurchaseProduct
+
+
+<div class="d-flex align-items-center justify-content-center">
+@*     <h3 style="color: #808080; font-weight: bold;">Report Viewer</h3> *@
+        <img src="/gadgetpoint.png" />
+</div>
+
+<br />
+<!-- Create a dropdown or navigation menu to select a report -->
+<div class="d-flex align-items-center justify-content-center">
+    <select @bind="selectedReport">
+        <option value="">-- Select Report --</option>
+        <option value="purchase">Purchase Report</option>
+        <option value="product">Product Report</option>
+        <option value="brand">Brand Report</option>
+        <option value="category">Category Report</option>
+        <option value="subcategory">Sub Category Report</option>
+        <option value="supplier">Supplier Report</option>
+        <!-- Add more report options as needed -->
+    </select>
+</div>
+
+<br />
+<!-- Display the selected report based on user choice -->
+<div class="d-flex align-items-center justify-content-center">
+    @switch (selectedReport)
+    {
+        case "purchase":
+            <PurchaseReport />
+            break;
+        case "product":
+            <ProductReport />
+            break;
+        case "brand":
+            <BrandReport />
+            break;
+        case "category":
+            <CategoryReport />
+            break;
+        case "subcategory":
+            <SubCategoryReport />
+            break;
+        case "supplier":
+            <SupplierReport />
+            break;
+        default:
+            <h3 style="color: #808080; font-weight: bold;">Select a report from the dropdown</h3>
+            break;
+    }
+</div>
+
+
+@code {
+    private string selectedReport = ""; // Default to the product report
+}
